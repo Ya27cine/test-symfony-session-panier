@@ -33,9 +33,17 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/panier/remove", name="cart_destr")
+     * @Route("/panier/remove/{id}", name="cart_remove")
      */
-    public function remove( SessionInterface $session){
+    public function remove($id, CardService $card){
+        $card->add($id);
+        dd('success');
+    }
+
+    /**
+     * @Route("/panier/delete", name="cart_delete")
+     */
+    public function delete( SessionInterface $session){
         $session->remove('product');
         dd('remove');
     }

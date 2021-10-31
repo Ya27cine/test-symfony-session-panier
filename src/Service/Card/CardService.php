@@ -48,6 +48,13 @@ class CardService{
         return $total_panier;
     }
 
+    public function remove($id){
+        $mon_panier = $this->session->get('product', []);
+        
+        if( isset($mon_panier[$id]) )
+                 unset($mon_panier[$id]);
+    }
+
 }
 
 ?>
