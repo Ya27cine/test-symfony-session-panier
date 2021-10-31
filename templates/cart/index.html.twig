@@ -8,5 +8,41 @@
         <h1>Votre panier</h1>
     </div>
 
+    {% if panier | length > 0%}
+        <div class="row">
+            <div class="col-md-9 mx-auto">
+                    <table class="table my-3">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item  in panier %}
+                                <tr>
+                                    <td scope="row">{{ item.product.title }}</td>
+                                    <td>{{ item.product.price }}</td>
+                                    <td>{{ item.Quantity }}</td>
+                                    <td>{{ item.product.price *  item.Quantity }}</td>
+                                    <td>
+                                        <a  class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+               
+            </div>
+        </div>
+    {% else %}
     <p>Surprise, c'est vide !</p>
+    {% endif%}
 {% endblock %}

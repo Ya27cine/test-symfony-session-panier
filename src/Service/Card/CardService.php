@@ -32,7 +32,7 @@ class CardService{
 
         foreach ($mon_panier as $id => $value) {
             $panierWithData[] = [
-                    'prodcut' => $this->productRepository->find( $id ),
+                    'product' => $this->productRepository->find( $id ),
                     'Quantity' => $value
             ]; 
         }
@@ -43,14 +43,14 @@ class CardService{
     public function total($panierWithData){
         $total_panier = 0.0;
         foreach ($panierWithData as $item) {
-            $total_panier += $item['prodcut']->getPrice() * $item['Quantity'];
+            $total_panier += $item['product']->getPrice() * $item['Quantity'];
         }
         return $total_panier;
     }
 
     public function remove($id){
         $mon_panier = $this->session->get('product', []);
-        
+
         if( isset($mon_panier[$id]) )
                  unset($mon_panier[$id]);
     }
