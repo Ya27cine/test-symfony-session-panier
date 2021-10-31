@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,21 +12,16 @@ class CartController extends AbstractController
     /**
      * @Route("/panier", name="cart_index")
      */
-    public function index(CardService $card, ProductRepository $productRepository)
+    public function index(CardService $card)
     {
-
-        
         $panierWithData = $card->fullCard();
 
-        $total_panier  = 0;
-        foreach ($panierWithData as $item) {
-            $total_panier += $item['prodcut']->getPrice() * $item['Quantity'];
-        }
-        var_dump($total_panier);
-
-        dd($panierWithData);
-
-        return $this->render('cart/index.html.twig', []);
+        $total_panier  = $card->total( $panierWithData );
+        
+        return $this->render('cart/index.html.twig', [
+            'panier' => $panierWithData,
+            'total' => $total_panier
+        ]);
     }
 
     /**

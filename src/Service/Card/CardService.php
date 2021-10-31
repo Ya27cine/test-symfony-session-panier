@@ -40,6 +40,14 @@ class CardService{
         return $panierWithData;
     }
 
+    public function total($panierWithData){
+        $total_panier = 0.0;
+        foreach ($panierWithData as $item) {
+            $total_panier += $item['prodcut']->getPrice() * $item['Quantity'];
+        }
+        return $total_panier;
+    }
+
 }
 
 ?>
