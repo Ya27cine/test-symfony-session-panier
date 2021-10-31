@@ -53,6 +53,8 @@ class CardService{
 
         if( isset($mon_panier[$id]) )
                  unset($mon_panier[$id]);
+        
+        $this->session->set('product', $mon_panier);
     }
 
 }

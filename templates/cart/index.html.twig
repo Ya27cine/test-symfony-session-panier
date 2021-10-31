@@ -30,7 +30,7 @@
                                     <td>{{ item.Quantity }}</td>
                                     <td>{{ item.product.price *  item.Quantity }}</td>
                                     <td>
-                                        <a  class="btn btn-sm btn-danger">Delete</a>
+                                        <a  href="{{ path('cart_remove',{id: item.product.id })}}" class="btn btn-sm btn-danger">Delete</a>
                                     </td>
 
                                 </tr>

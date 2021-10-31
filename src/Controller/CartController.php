@@ -36,8 +36,9 @@ class CartController extends AbstractController
      * @Route("/panier/remove/{id}", name="cart_remove")
      */
     public function remove($id, CardService $card){
-        $card->add($id);
-        dd('success');
+        $card->remove($id);
+
+        return $this->redirectToRoute('cart_index');
     }
 
     /**
