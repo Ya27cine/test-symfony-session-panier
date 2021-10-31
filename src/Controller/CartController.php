@@ -13,19 +13,11 @@ class CartController extends AbstractController
     /**
      * @Route("/panier", name="cart_index")
      */
-    public function index(SessionInterface $session, ProductRepository $productRepository)
+    public function index(CardService $card, ProductRepository $productRepository)
     {
 
-        $mon_panier = $session->get('product', []);
-
-        $panierWithData = [];
-
-        foreach ($mon_panier as $id => $value) {
-            $panierWithData[] = [
-                    'prodcut' => $productRepository->find( $id ),
-                    'Quantity' => $value
-            ]; 
-        }
+        
+        $panierWithData = $card->fullCard();
 
         $total_panier  = 0;
         foreach ($panierWithData as $item) {
