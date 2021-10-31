@@ -28,8 +28,8 @@ class CartController extends AbstractController
      * @Route("/panier/add/{id}", name="cart_add")
      */
     public function add($id, CardService $card){
-        $card->add($id);
-        dd('success');
+         $card->add($id);
+         return $this->redirectToRoute('cart_index');
     }
 
     /**
